@@ -19,3 +19,7 @@
 </div>
 
 <a class="submit" href="index.php?action=showUpdateArticleForm">Ajouter un article</a>
+
+<h2>Données des articles</h2>
+
+<a class="submit" href="index.php?action=monitoring&sort=title_asc">Afficher le tableau de données</a>
