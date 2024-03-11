@@ -6,7 +6,8 @@
 
 <h2>Données des articles</h2>
 
-<form action="" method="get">
+<form action="index.php" method="get">
+    <input type="hidden" name="action" value="monitoring">
     <label for="sort">Trier par : </label>
     <select name="sort" id="sort">
         <option value="title_asc" selected>Par titre (croissant)</option>
@@ -21,3 +22,23 @@
     <button type="submit" class="submit">Sélectionner</button>
 </form>
 
+<table class="results">
+    <thead>
+        <tr>
+            <th>Titre de l'article</th>
+            <th>Nombre de vues</th>
+            <th>Nombre de commentaires</th>
+            <th>Date de publication</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($datas as $data) : ?>
+            <tr>
+                <td><?=$data->getTitle()?></td>
+                <td><?=$data->getViews()?></td>
+                <td><?=$data->getComments()?></td>
+                <td><?=ucfirst(Utils::convertDateToFrenchFormat($data->getDateCreation()))?></td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>

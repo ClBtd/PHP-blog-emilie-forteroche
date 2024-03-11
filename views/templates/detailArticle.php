@@ -30,7 +30,15 @@
                 echo '  <div class="smiley">☻</div>';
                 echo '  <div class="detailComment">';
                 echo '      <h3 class="info">Le ' . Utils::convertDateToFrenchFormat($comment->getDateCreation()) . ", " . Utils::format($comment->getPseudo()) . ' a écrit :</h3>';
-                echo '      <p class="content">' . Utils::format($comment->getContent()) . '</p>';
+                echo '      <p class="content">' . Utils::format($comment->getContent()) . '</p><br>';
+                if (isset($_SESSION['user'])) {
+                    echo '      <form class="deleteForm" action="index.php" method="post">';
+                    echo '          <input type="hidden" name="action" value="deleteComment">';
+                    echo '          <input type="hidden" name="id" value="'. $comment->getId(). '">';
+                    echo '          <input type="hidden" name="articleId" value="'. $article->getId(). '">';
+                    echo '          <button class="submit" type="submit">Supprimer</button>';
+                    echo '      </form>';
+                }
                 echo '  </div>';
                 echo '</li>';
             }               

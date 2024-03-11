@@ -191,8 +191,31 @@ class AdminController {
         {
             $sort = $_GET['sort'];
             $view = new View("Monitoring");
-            $view->render("monitoring", ["sort=$sort"]);
+            $datas = new DataManager;
+            $datas = $datas->getDatas();
+            $view->render("monitoring", [
+                "sort"=>$sort, 
+                "datas"=>$datas
+            ]);
         }
+        
+    }
+
+    /**
+    * Suppression d'un commentaire.
+    * @return void
+    */
+    public function deleteComment() : void
+    {
+        $this->checkIfUserIsConnected();
+
+        //On supprime le commentaire.
+        $id = (int)$_POST['id'];
+        $commentManager = new CommentManager();
+        $commentManager->deleteComment($id);
+       
+        //On redirige vers la page de l'article.
+        Utils::redirect("showArticle", ['id'=>$_POST['articleId']]);
         
     }
 }
