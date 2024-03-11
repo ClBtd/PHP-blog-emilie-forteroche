@@ -190,9 +190,11 @@ class AdminController {
         if (!empty($_GET['sort'])) 
         {
             $sort = $_GET['sort'];
+            $sorting_param = strstr($sort, '_', true);
+            $order = substr(strstr($sort, '_'), 1);
             $view = new View("Monitoring");
             $datas = new DataManager;
-            $datas = $datas->getDatas();
+            $datas = $datas->getDatas($sorting_param, $order);
             $view->render("monitoring", [
                 "sort"=>$sort, 
                 "datas"=>$datas
