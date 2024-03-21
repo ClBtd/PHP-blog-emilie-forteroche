@@ -1,7 +1,15 @@
 <?php
 
+/**
+ * Classe qui gère les données sur les articles.
+ */
+
 class DataManager extends AbstractEntityManager {
 
+    /**
+     * Récupère toutes les données concernant tous les articles.
+     * @return array : un tableau d'objets Datas.
+     */
     public function getDatas(string $sorting, string $order) : array
     {
         $sql = "SELECT title, article.dateCreation, views, COUNT(comment.id) AS comments 

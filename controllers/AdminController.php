@@ -209,6 +209,7 @@ class AdminController {
     */
     public function deleteComment() : void
     {
+        //On vérifie que l'utilisateur est connecté.
         $this->checkIfUserIsConnected();
 
         //On supprime le commentaire.
